@@ -1,0 +1,71 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    
+    public:
+    int val;
+    node *link;
+};
+node *top =NULL;
+bool isempty(){
+    if(top==NULL)return true;
+    else return false;
+}
+void push(int x){
+    node *n1=new node();
+    n1->val=x;
+    n1->link=top;
+    top=n1;
+}
+void showtop(){
+    if(isempty()) cout<<"stack is empty"<<endl;
+    else cout<<"the element at top is:"<<top->val<<endl;
+}
+void pop (){
+    if(isempty()) cout<<"stack is empty"<<endl;
+    else{
+    node *ptr=top;
+    
+    top=ptr->link;
+    delete(ptr);
+    }
+}
+void size(){
+    int size=0;
+    if(isempty()) cout<<"stack is empty"<<endl;
+    else{
+        node *ptr=top;
+        for(int i=0;ptr!=NULL;i++){
+            ptr=ptr->link;
+            size++;
+        }
+       
+    }
+    cout<<"size of stack is:"<<size<<endl;
+}
+void display(){
+    node *ptr=top;
+    if(ptr==NULL){
+        cout<<"No Elements"<<endl;
+    }
+    else{
+        for(int i=0;ptr!=NULL;i++){
+            cout<<ptr->val<<endl;;
+            ptr=ptr->link;
+        }
+    }
+}
+int main(){
+    push(1);
+    push(2);
+    push(3);
+    showtop();
+    display();
+    size();
+    pop();
+    showtop();
+    display();
+    size();
+
+    return 0;
+}
