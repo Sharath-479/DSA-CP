@@ -1,0 +1,141 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int val;
+    node *next;
+    node *prev;
+
+    node(int val){
+        this->val=val;
+        next=NULL;
+        prev=NULL;
+    }
+
+};
+void insertionatfront(node* &head,int val){
+    node* n=new node(val);
+    n->next=head;
+    if(head!=NULL) head->prev=n;
+    head=n;
+
+}
+void insertionattail(node* &head,int val){
+    node* n1=new node(val);
+    if(head==NULL){
+        insertionatfront(head,val);
+        return;
+    }
+    node* temp=head;
+    
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    temp->next=n1;
+    n1->prev=temp; 
+}
+void deleteathead(node *head){
+    
+    node *temp=head;
+    head=head->next;
+    head->prev=NULL;
+    
+    
+    delete(temp);
+}
+void deletion(node *head,int pos){
+    
+    if(pos==1){
+        deleteathead(head);
+        return;
+    }
+    node *temp=head;
+    int count=1;
+    while(temp!=NULL && count!=pos){
+        temp=temp->next;
+        count++;
+    }
+    temp->prev->next=temp->next;
+    if(temp->next!=NULL){
+    temp->next->prev=temp->prev;
+    }
+    delete(temp);
+}
+void peekfront(node *head){
+    if(head==NULL) cout<<"NO element"<<endl;
+    else{
+        cout<< "element at front:"<<head->val<<endl;
+    }
+
+}
+
+void peekback(node *head){
+    
+    if(head==NULL) cout<<"NO elements"<<endl;
+    else{
+        node *temp=head;
+        while(temp->next !=NULL){
+            temp=temp->next;
+        }
+    cout<<"element at back:"<<temp->val<<endl;
+    }
+    
+}
+void size(node *head){
+    if(head==NULL || head->next==NULL) cout<<"No elements. Size is 0"<<endl;
+    node *temp=head;
+    int count=0;
+    while(temp!=NULL){
+        temp=temp->next;
+        count++;
+    }
+    cout<<"size is:"<<count<<endl;
+    
+        
+}
+void isempty(node *head){
+    if(head==NULL) cout<<"true"<<endl;
+    else{
+    node *temp=head;
+    int count=0;
+    while(temp!=NULL){
+        temp=temp->next;
+        count++;
+    }
+    cout<<"false"<<endl;
+    }
+}
+void display(node *head){
+    node* temp=head;
+    while(temp!=NULL){
+        cout<<temp->val;
+        
+        temp=temp->next;
+    }
+    cout<<endl;
+}
+int main()
+{
+    node *head=NULL;
+    isempty(head);
+    insertionatfront(head,7);
+    insertionatfront(head,6);
+    insertionatfront(head,5);
+    display(head);
+    size(head);
+    insertionattail(head,1);
+    insertionattail(head,2);
+    insertionattail(head,3);
+    insertionattail(head,4);
+    display(head);
+    size(head);
+    deletion(head,4);
+    size(head);
+    peekfront(head);
+    peekback(head);
+    display(head);
+    isempty(head);
+
+    return 0;
+
+}
