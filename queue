@@ -1,0 +1,94 @@
+#include<bits/stdc++.h>
+using namespace std;
+class node{
+    public:
+    int val;
+    node *next;
+
+};
+node *front=NULL;
+node *back=NULL;
+
+bool isempty()
+{
+    if(front==NULL && back==NULL) return true;
+    else return false;
+}
+void enqueue(int val)
+{
+    node *n=new node();
+    n->val=val;
+    n->next=NULL;
+    if(front==NULL){
+        front=n;
+        back=n;
+    }
+    else{
+        back->next=n;
+        back=n;
+    }
+}
+void dequeue()
+{
+    if(isempty()) cout<<"queue is empty"<<endl;
+    else{
+        if(front==back){
+            delete(front);
+            front=NULL;
+            back=NULL;
+        }
+        else{
+            node *temp=front;
+            front=front->next;
+            delete(temp);
+        }
+}
+}
+void peek()
+{
+    if(isempty()) cout<<"queue is empty"<<endl;
+    else{
+        cout<<"value at frontis:"<<front->val<<endl;
+    }
+}
+void display()
+{
+    if(isempty()) cout<<"empty queue"<<endl;
+    else{
+        node *temp=front;
+        while(temp!=NULL){
+            cout<<temp->val<<" "<<endl;
+            temp=temp->next;
+        }
+    }
+}
+void size()
+{
+    if(isempty()) cout<<"size is 0"<<endl;
+    else{
+        node *temp=front;
+        int count=0;
+        while(temp!=NULL){
+            temp=temp->next;
+            count++;
+        }
+        cout<<"size is:"<<count<<endl;
+    }
+}
+int main()
+{
+    isempty();
+    enqueue(1);
+    enqueue(2);
+    enqueue(3);
+    display();
+    enqueue(4);
+    enqueue(5);
+    display();
+    peek();
+    size();
+    isempty();
+    
+    
+    return 0;
+}
