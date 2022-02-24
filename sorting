@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+//bool cmp(int a, int b){
+   // return a<b;
+//}
+ void selectionsort(vector<int> &arr){
+    for(int i=0;i<arr.size();i++){
+        int n=i;
+        for(int j=i+1;j<arr.size();j++){
+            if((arr[n]>arr[j])){
+                n=j;
+            }
+        }
+        swap(arr[i],arr[n]);
+    }
+
+}
+void display(vector<int> arr){
+    for(auto ele: arr){
+        cout<<ele<<" ";
+    }
+    cout<<endl;
+}
+
+
+int main(){
+    int s;
+    vector<int> arr={3,7,5,1,6,2,4};
+    cout<<"Before"<<endl;
+    display(arr);
+    cout<<"After"<<endl;
+    selectionsort(arr);
+    display(arr);
+    return 0;
+    
+}
